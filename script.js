@@ -9,21 +9,18 @@ const forecastItem = document.querySelector('.forecast-item'); //шаблон к
 
 //  кнопка
 button.addEventListener('click', function() {
-    
-})
+    function makeForecast(title, value) {
+        const beForecast = forecastItem.content.cloneNode(true);
+        beForecast.querySelector('h3').textContent = title;
+        beForecast.querySelector('p').textContent = value;
 
-// генерация числа карточек 
+   return makeForecast;
+};
+
+// генерация  
 function getRandomCase(min, max) {
-    getRandomCase(1, 5);
     return Math.floor(Math.random() * (max - min)) + min;
-}
-
-// генерация числа для вероятности в процентах
-function getRandomProcent(min, max) {
-    getRandomProcent(1, 100);
-    return Math.floor(Math.random() * (max - min)) + min;
-}
-
+};
 
 // карточки с предсказаниями
 let prediction = '';
@@ -53,6 +50,14 @@ switch(getRandomCase) {
         break;
 
 }
+});
+
+header.textContent = prediction;
+const value = Math.floor(Math.random() * 100) + "%";
+procent.textContent = "Вероятность : " + value;
+
+const newCard = makeForecast (prediction, "Вероятность : " + value);
+container.prepend(newCard);
 
 
 /* Заранее заготовь 3-5 предсказаний и в зависимости от того, как лягут карты судьбы (или что скажет Math.random) показывай их пользователю */
