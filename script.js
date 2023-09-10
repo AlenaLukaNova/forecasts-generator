@@ -7,44 +7,42 @@ const container = document.querySelector('.forecasts'); // карточка
 const forecastItem = document.querySelector('.forecast-item'); //шаблон карточки
 
 function getRandomCase(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 //  кнопка
-button.addEventListener('click', function() {
-    function makeForecast(title, value) {
-        const beForecast = forecastItem.content.cloneNode(true);
-        beForecast.querySelector('h3').textContent = title;
-        beForecast.querySelector('p').textContent = value;
 
-   return(beForecast);
+    function makeForecast(title, value) {
+        const newForecast = forecastItem.content.cloneNode(true);
+        newForecast.querySelector('h3').textContent = title;
+        newForecast.querySelector('p').textContent = value;
+        return newForecast;
 };
 
 // генерация  
 
-
+button.addEventListener('click', function() {
 const card = getRandomCase(1, 5);
-
 // карточки с предсказаниями
-let prediction = "";
+let prediction = '';
 switch(card) {
-    case '1':
+    case 1:
         prediction = "Тебя ожидает интересная поездка.";
         break;
     
-    case '2':
+    case 2:
         prediction = "Будешь много плакать, но только от радости.";
         break;
     
-    case '3':
+    case 3:
         prediction = "Успешным будет любое начатое дело.";
         break;
 
-    case '4':
+    case 4:
         prediction = "Посвяти больше времени себе.";
         break;
 
-    case '5':
+    case 5:
         prediction = "Ждет много интересных приключений.";
         break;
 
@@ -55,9 +53,8 @@ switch(card) {
 
 
 header.textContent = prediction;
-
-const value = Math.floor(Math.random() * 100) + "%";
-description.textContent = "Вероятность: " + value;
+const value = Math.floor(Math.random() * 100) + 1 + "%";
+description.textContent = "Вероятность:" + value;
 
 const newCard = makeForecast (prediction, "Вероятность: " + value);
 container.prepend(newCard);
